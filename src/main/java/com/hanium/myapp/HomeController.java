@@ -63,6 +63,7 @@ public class HomeController {
 		JSONParser parser = new JSONParser();
 		Object obj = parser.parse(content.getrequestParsing());
 		JSONObject jsonObj = (JSONObject) obj;
+<<<<<<< HEAD
 	
 
 		///////////////////////여기까지가 사용자로부터 받은 요청을 json으로 파싱 
@@ -81,6 +82,32 @@ public class HomeController {
 		
 		FunctionController StringAddress = new FunctionController();
 		String gettext = StringAddress.getaddress(usercheck.get_result(), jsonObj, sqlSession); 
+=======
+		
+		System.out.println("---------------------");
+		System.out.println("eonjeong : " + content); //req.getReader()를 해서 (BufferedReaader타입으로해서)한줄씩읽은것을 String으로 반환해서 toString 오버라이드 해서 가져온거
+		System.out.println("---------------------");
+		System.out.println(jsonObj);
+		System.out.println("---------------------");
+		
+
+		///////////////////////여기까지가 사용자로부터 받은 요청을 json으로 파싱 
+		
+		KeyboardAndMessageVO keyboardAndMessageVO = new KeyboardAndMessageVO(); 
+		MessageVO messageVO = null;
+
+
+		UserDBCheck usercheck = new UserDBCheck(req, jsonObj, logger, sqlSession);
+
+		// logger.info(usercheck.get_result());
+		String parsingcontent = (String) jsonObj.get("content");
+		String parsinguserkey = (String) jsonObj.get("user_key");
+		
+
+		
+		FunctionController StringAddress = new FunctionController();
+		String gettext = StringAddress.getaddress(usercheck.get_result(), parsingcontent); 
+>>>>>>> branch 'master' of https://github.com/Choi2/Project-SookMyong.git
 		int getaddress = StringAddress.get_currentlocation();
 
 		if (getaddress == 0) {
